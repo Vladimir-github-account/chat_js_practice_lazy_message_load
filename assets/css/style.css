@@ -1,2 +1,43 @@
 @import "reset.css";
 
+* {
+    box-sizing: border-box;
+}
+
+#messenger {
+    min-height: 100vh;
+    padding: 10px;
+    display: flex;
+    flex-flow: column nowrap;
+    max-width: 1024px;
+    margin: 0 auto;
+    border-right: 1px solid rgba(50, 50, 50, 0.3);
+    border-left: 1px solid rgba(50, 50, 50, 0.3);
+}
+
+.chatListAndCurrentChatListMessagesWrapper {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.chatListAndSearchFormWrapper {
+    flex: 0.3;
+    min-width: 250px;
+}
+
+.chatListAndSearchFormWrapper {
+    border-right: 1px solid rgba(50, 50, 50, 0.3);
+}
+
+.currentChatListMessages {
+    flex: 1;
+    position: relative;
+}
+
+span.noCurrentChatSpan {
+    margin: 0;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}

@@ -10,6 +10,7 @@ export default class Message {
    * @param {Date} date
    */
   constructor (type, content, textMessage, author, date) {
+    // console.log('constructor' + arguments[arguments.length-1]);
     this._type = type;
     this._content = content;
     this._textMessage = textMessage;
@@ -57,7 +58,42 @@ export default class Message {
     this._type = value;
   }
 
-  render () {
+  renderMessageTextParagraph(textMessage) {
+    const p = document.createElement('p');
+    p.innerText = textMessage;
+    return p;
+  }
 
+  renderMessageImage(content) {
+    const image = new Image();
+    image.src = content.src;
+    return image;
+  }
+
+  renderDateSpan(date) {
+    const span = document.createElement('span');
+    span.innerText = date.toLocaleString();
+    return span;
+  }
+
+  renderAuthorSpan(author) {
+    const span = document.createElement('span');
+    span.innerText = author.name + ' ' + author.surname;
+    return span;
+  }
+
+  render () {
+    // console.log('render' + arguments.length);
+    const li = document.createElement('li');
+    //li.setAttribute('id', `${arguments}`);
+    li.appendChild(this.renderMessageTextParagraph(this.textMessage));
+    switch (this.type) {
+      case 'image':
+        li.appendChild(this.renderMessageImage(this.content));
+        break;
+    }
+    li.appendChild(this.renderDateSpan(this.date));
+    li.appendChild(this.renderAuthorSpan(this.author));
+    return li;
   }
 }
