@@ -22,15 +22,26 @@ export default class Messenger {
   }
 
   /*#################################RENDER#############################*/
+
+  /*RENDER CHAT LIST*/
   renderChatList(chatArray/*чем это лучше чем просто взять массив через this?*/) {
     const chatList = document.createElement('ul');
     chatList.classList.add('chatList');
+
     chatArray.forEach((chat) => {
-          chatList.appendChild(new Chat(chat.messages).render());
+      chatList.appendChild(new Chat(chat.messages, chat.participants,
+          chat.isDialog).renderChatListListItem());
         },
     );
+
+    /* chatArray.forEach((chat) => {
+     chatList.appendChild(new Chat(chat.messages).render());
+     },
+     );*/
+
     return chatList;
   }
+
 
   renderNoCurrentChatSpan() {
     const noCurrentChatSpan = document.createElement('span');
@@ -53,6 +64,7 @@ export default class Messenger {
   renderChatListAndSearchFormWrapper(chatArray) {
     const chatListAndSearchFormWrapper = document.createElement('div');
     chatListAndSearchFormWrapper.classList.add('chatListAndSearchFormWrapper');
+    /*HERE WILL BE SEARCH FORM */
     chatListAndSearchFormWrapper.appendChild(this.renderChatList(chatArray));
     return chatListAndSearchFormWrapper;
   }
@@ -81,7 +93,8 @@ export default class Messenger {
     messenger.appendChild(this.renderMessengerHeader());
     messenger.appendChild(
         this.renderChatListAndCurrentChatListMessagesWrapper(this.chatArray,
-            this.currentChat));
+            this.currentChat),
+    );
 
     return messenger;
   }

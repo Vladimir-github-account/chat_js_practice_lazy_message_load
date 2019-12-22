@@ -21,7 +21,7 @@
 }
 
 .chatListAndSearchFormWrapper {
-    flex: 0.3;
+    flex: 0.35;
     min-width: 250px;
 }
 
@@ -40,4 +40,48 @@ span.noCurrentChatSpan {
     position: absolute;
     top: 50%;
     left: 50%;
+}
+
+.chatList {
+    font-size: 14px;
+}
+
+.chatList > * ~ * {
+    margin-top: 10px;
+}
+
+.chatListListItem {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.userAvatarContainer {
+    min-width: 60px;
+    max-width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.userAvatarContainer > img {
+    width: inherit;
+    height: inherit;
+    object-fit: cover;
+}
+
+.chatListListItemDataContainer {
+    margin-left: 10px;
+    padding: 5px;
+    display: flex;
+    flex-flow: column nowrap;
+
+
+    overflow: hidden; /*maybe not needed*/
+}
+
+span.chatListListItemLastMessageSpan {
+    white-space: nowrap;
+    overflow: hidden; /*maybe not needed*/
+    text-overflow: ellipsis;
+    padding: 5px 5px 5px 0;
 }
