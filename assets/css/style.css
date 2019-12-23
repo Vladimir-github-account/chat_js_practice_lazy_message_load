@@ -55,6 +55,11 @@ span.noCurrentChatSpan {
     flex-flow: row nowrap;
 }
 
+.currentChat {
+    background-color: #5a7484;
+    color: white;
+}
+
 .userAvatarContainer {
     min-width: 60px;
     max-width: 60px;

@@ -118,8 +118,24 @@ export default class Chat {
     } else {
 
     }
+
     chatListListItem.addEventListener('click',
-        this.onChatListListItemClickHandler(chatListListItem));
+        () => {
+          if (!this.isCurrent) {
+            const previousCurrentChat = document.querySelector('.currentChat');
+            if (previousCurrentChat) {
+              previousCurrentChat.classList.remove('currentChat');
+            }
+            chatListListItem.classList.add('currentChat');
+            this.isCurrent = true;
+
+            document.querySelector(
+                '.chatListAndCurrentChatListMessagesWrapper').
+                replaceChild(this.render(),
+                    document.querySelector('ul.currentChatListMessages'),
+                );
+          }
+        });
 
     return chatListListItem;
   }
@@ -129,7 +145,7 @@ export default class Chat {
   render() {
     const ul = document.createElement('ul');
     ul.setAttribute('class', 'chat');
-
+    ul.classList.add('currentChatListMessages');
     this.messages.forEach((message /*index*/) => {
           ul.prepend(new Message(message.type, message.content, message.textMessage,
               message.author, message.date /*index*/).render());
