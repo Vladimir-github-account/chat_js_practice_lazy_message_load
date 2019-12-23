@@ -76,12 +76,12 @@ span.noCurrentChatSpan {
     flex-flow: column nowrap;
 
 
-    overflow: hidden; /*maybe not needed*/
+    overflow: hidden;
 }
 
 span.chatListListItemLastMessageSpan {
     white-space: nowrap;
-    overflow: hidden; /*maybe not needed*/
+    overflow: hidden;
     text-overflow: ellipsis;
     padding: 5px 5px 5px 0;
 }

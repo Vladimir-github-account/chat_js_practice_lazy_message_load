@@ -28,16 +28,11 @@ export default class Messenger {
     const chatList = document.createElement('ul');
     chatList.classList.add('chatList');
 
-    chatArray.forEach((chat) => {
+    chatArray.forEach((chat, index) => {
       chatList.appendChild(new Chat(chat.messages, chat.participants,
-          chat.isDialog).renderChatListListItem());
+          chat.isDialog).renderChatListListItem(index));
         },
     );
-
-    /* chatArray.forEach((chat) => {
-     chatList.appendChild(new Chat(chat.messages).render());
-     },
-     );*/
 
     return chatList;
   }

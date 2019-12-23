@@ -13,6 +13,7 @@ export default class Chat {
     this._messages = messages;
     this._participants = participants;
     this._isDialog = isDialog;
+    this._isCurrent = false;
   }
 
   get messages() {
@@ -25,6 +26,14 @@ export default class Chat {
 
   get isDialog() {
     return this._isDialog;
+  }
+
+  get isCurrent() {
+    return this._isCurrent;
+  }
+
+  set isCurrent(value) {
+    this._isCurrent = value;
   }
 
   loadMessages() {
@@ -76,9 +85,29 @@ export default class Chat {
     return chatListListItemLastMessageSpan;
   }
 
-  renderChatListListItem() {
+  onChatListListItemClickHandler(chatListListItem) {
+    debugger
+    console.log(arguments);
+    console.log(this);
+    chatListListItem.classList.add('currentChat');
+    this.isCurrent = true;
+    const wrapper = document.getElementsByClassName(
+        'chatListAndCurrentChatListMessagesWrapper')[0];
+    /* document.querySelector('chatListAndCurrentChatListMessagesWrapper').
+     replaceChild(this.render(),
+     document.querySelector(
+     'ul.chatListAndCurrentChatListMessagesWrapper'),
+     );*/
+    /*chatArray.forEach((chat) => {
+     chatList.appendChild(new Chat(chat.messages).render());
+     },
+     );*/
+  }
+
+  renderChatListListItem(id) {
     const chatListListItem = document.createElement('div');
     chatListListItem.classList.add('chatListListItem');
+    chatListListItem.setAttribute('id', `chatListListItem${id}`);
     if (this.isDialog) {
       chatListListItem.appendChild(
           this.renderChatListListItemUserAvatarContainer(
@@ -89,9 +118,13 @@ export default class Chat {
     } else {
 
     }
+    chatListListItem.addEventListener('click',
+        this.onChatListListItemClickHandler(chatListListItem));
 
     return chatListListItem;
   }
+
+  /*----------------------------RENDER MESSAGE LIST---------------------------*/
 
   render() {
     const ul = document.createElement('ul');
